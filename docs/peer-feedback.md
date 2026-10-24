@@ -1,5 +1,3 @@
-# Peer feedback and response
+# Peer feedback
 
-No feedback from another group has been supplied or recovered. No reviewer, review date, comment or peer-driven revision is claimed.
-
-Once actual feedback is received, record the reviewer/group and date, summarize each comment, describe the resulting revision and its location, and explain any suggestion not adopted. Preserve this distinction between received feedback and the author's own preparation decisions.
+The authoritative review status is [reviews/status.md](../reviews/status.md). The reviewer reproduction guide is [reviews/reproduction-guide.md](../reviews/reproduction-guide.md). No external feedback has been received or invented.

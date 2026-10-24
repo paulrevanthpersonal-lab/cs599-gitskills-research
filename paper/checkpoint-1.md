@@ -1,0 +1,117 @@
+# Verification Guidance and Reuse in GitSkills
+
+This study examines whether reusable agent skills include clear instructions for checking their outputs. It proposes two questions about verification guidance, reuse across repository owners, and the supporting files mentioned by verification steps. For Checkpoint 1, the public GitSkills sample has been downloaded, inspected and queried. The reported findings concern dataset structure and data quality. Human coding and the comparisons needed to answer the research questions remain planned work.
+
+## Dataset Overview and Available Resources
+
+GitSkills was created by Giuseppe Destefanis, Daniel Graziotin, Matteo Vaccargiu and Marco Ortu to support empirical research on agent skills. A skill usually consists of a SKILL.md instruction file and optional supporting material. The dataset paper explains its construction, while the Zenodo archive identifies the full release as version 1.0.0, published August 10, 2026 (Destefanis et al., 2026a, 2026b). The official MSR Mining Challenge lists GitSkills and SpecMine as the eligible datasets (MSR 2027 Organizers, n.d.). This study selects GitSkills.
+
+The analyzed sample was accessed on October 23, 2026. It is the file agent_skills_sample.db, containing 290,955,264 bytes, from sample-repository revision fff3df93beeee51a5444450891751f143e38da3e. The downloaded ZIP was checked against the Git tree at that revision, and its database checksum is preserved in manifest.json. The sample has no separately verified version number. The course permits a documented subset with instructor approval; approval for using this sample has not yet been documented. The checkpoint demonstrates its feasibility while keeping that decision open.
+
+The full release reports 3,797,117 occurrences and 1,877,981 distinct contents from 282,200 repositories owned by 195,841 accounts. It also reports 7,264,865 supporting folder entries and 458,548 selected file histories. These are published figures, not results from querying the full release. In contrast, the sample queries independently returned 29,786 occurrences, 13,000 distinct contents, 11,841 repositories, 10,786 owners, 47,829 sibling entries, and 3,010 available histories. The distinction between published coverage and observed sample counts is maintained throughout the report.
+
+The paper, sample README, Zenodo download and Hugging Face dataset card are linked in the references. The sample README provides the field dictionary and executable SQL examples. The Hugging Face card provides a typed schema and Python loading example. No dedicated GitSkills notebook was verified. This study uses SQLite for local inspection and joins; the full release is available as SQLite on Zenodo and as table-sharded Parquet on Hugging Face (Destefanis et al., 2026c; Vaccargiu, n.d.).
+
+The documentation describes read-only collection from GitHub code search, REST and GraphQL interfaces, and raw content during July 2026. Discovery partitioned searches by file size, and deduplication grouped identical bytes using Git blob hashes. One representative per content group was enriched. Files lost before content retrieval were excluded. The sample retains the 13,000 lowest content hashes and their associated occurrences, so it approximates content-level sampling rather than repository-level random sampling (Destefanis et al., 2026c). GitHub indexing limitations mean that the corpus is not a census of all skills.
+
+Collection timestamps describe retrieval rather than creation. Observed discovery dates span July 9-20, 2026, whereas the earliest available first commit is April 14, 2025, and the latest last commit is July 23, 2026. The corpus does not show agent invocations, execution success, user satisfaction, private repositories, or complete histories for every copy. The dataset card releases collected metadata and aggregation under CC BY 4.0; reproduced file text retains its origin license. A missing repository license does not establish permission to redistribute that text (Vaccargiu, n.d.).
+
+## Data Structure and Relationships
+
+The SQLite database contains four substantive tables. Each artifacts row represents one repository-path occurrence, with a composite primary key of repo_full_name and path. The file_sha field groups byte-identical contents. The dedup_primary flag identifies the representative used for text analysis; content, description, frontmatter_valid and body_chars describe its text. Composition and history flags distinguish recorded information from unavailable or truncated enrichment.
+
+The repos table contains one record per repository, keyed by full_name. Joining artifacts.repo_full_name to repos.full_name supplies owner, language, stars, fork status, license and timestamps. The artifact_siblings table records individual files and directories associated with a skill folder. It joins to an artifact through both repo_full_name and artifact_path, matching the artifact's repository and path. The mining_runs table records seven collector runs, but there is no direct run identifier on each artifact. The actual DDL is preserved in results/schema.sql; the README and dataset card explain field meanings.
+
+An observed example is the representative at obot-platform/obot, path .claude/skills/draft-release-blog/SKILL.md, with content hash 00000f2a9d8359900f2075b536b435ca9473a5b9. Its recorded body length is 13,056 characters. A composite-key join returns md_to_html.py, a sibling file of 1,158 bytes. This confirms a usable relationship between records. It does not demonstrate that the file runs or that the skill verifies its output successfully.
+
+The same content can appear at multiple paths within a repository, in several repositories under one owner, or across different owners. Among all 13,000 sample groups, 3,378 have multiple occurrences and 2,391 span multiple owners. Row counts, repository counts and owner counts therefore measure different forms of reach. Neither identical content nor the selected representative establishes original authorship or copying direction. Folder and history information must remain attached to its recorded occurrence. Unexplained enrichment flags and missing skip reasons are treated as unresolved collection details rather than assumed meanings.
+
+## Research Questions and Related Work
+
+### Verification Guidance and Cross Owner Reuse
+
+The first question is: How does actionable verification guidance differ between eligible skill contents with a single occurrence, multiple occurrences under one owner, and occurrences across multiple owners? Clear checks matter because a shared instruction can reach many projects without demonstrating that its output is correct. The unit is one distinct content group, identified by file_sha. Representative content supplies the guidance labels, while occurrence records and repos.owner provide reuse measures. The intended contribution is an association between a validated content measure and reuse, rather than another inventory of copied files.
+
+### Supporting Files for Verification Steps
+
+The second question is: When a representative skill's verification steps refer to local supporting files, are those files present in its complete recorded folder inventory, and does support differ by verification specificity? The unit is a content group represented by one particular repository-path folder. Required fields are content, composition_fetched, composition_truncated, entry_name and entry_type. This question connects stated checking procedures to their recorded supporting material. File presence is not a measure of execution success, safety or effectiveness.
+
+### Relationship to Existing Studies
+
+The GitSkills paper establishes a corpus suitable for studying content and reuse, but does not establish whether an agent follows a verification step (Destefanis et al., 2026b). Destefanis (2026) argues for evaluation-driven skill authoring, motivating a measure of explicit checking guidance. Gao et al. (2026) study how skills are written, adapted and maintained, finding substantial near-verbatim reuse and limited changes to behavioral contracts. Those results motivate studying the verification instructions retained in reused content.
+
+Seddik (2026) reconstructs dated copy networks and examines propagation, risk and audit targeting. This project takes a narrower static view of verification instructions and local supporting references; it does not claim to reconstruct diffusion. Kalliamvakou et al. (2014) show why heterogeneous GitHub repositories and mined activity require careful interpretation. Repository presence will consequently not be equated with production adoption. The open skill specification allows flexible body instructions and optional supporting directories, so valid front matter is an eligibility proxy rather than a quality score (Agent Skills, n.d.).
+
+## Proposed Method
+
+The study combines quantitative extraction with human qualitative coding. The primary frame requires dedup_primary = 1, the exact case-sensitive filename SKILL.md, parser-valid front matter, nonempty content, and repository metadata with known nonfork status. These rules produce 11,192 eligible contents: 11,197 satisfy the filename and header conditions, but five have unknown repository fork status. Main results will state this restricted population, with a sensitivity analysis relaxing the filename and header conditions. No file-history date cutoff is imposed because histories are unavailable for most contents.
+
+Reuse is counted over exact-basename occurrences in repositories with known nonfork status. The observed frame contains 8,265 single-occurrence groups, 693 same-owner multiple-occurrence groups and 2,234 cross-owner groups. Eighty groups per stratum have been selected by sorting the SHA-256 of the fixed prefix cs599-label-v1: followed by file_sha. This creates a reproducible 240-item frame. The frame is generated, but the semantic labels are blank. A separate blind form omits reuse strata, counts and stars; combined frame-level prevalence will use stratum weights N_h/80.
+
+The proposed codebook assigns V0 when no output check is directed, V1 for a generic request to test or review, V2 for either a concrete check action or an observable acceptance criterion, and V3 when an action and criterion are explicitly connected. V2 and V3 form the primary actionable category. Uncertain cases remain unresolved. For example, the invented instruction "review the result" illustrates V1, while "run pytest and require all tests to pass" illustrates V3. These are codebook examples, not observed findings.
+
+For the first question, compare actionable-guidance proportions across strata, with the cross-owner versus single-occurrence difference as the primary contrast. Report that difference and an odds ratio with 95% intervals from 10,000 within-stratum bootstrap resamples using seed 599. The same-owner stratum is secondary. Associations will not be interpreted causally. Exploratory adjustment for text length and task purpose will only be attempted with adequate support and no separation; otherwise the analysis remains descriptive. Catalog exclusion and one-unit-per-representative-owner sensitivity checks will assess some dependence and contextual effects without claiming full independence across owners.
+
+For the second question, human coding will identify local file references explicitly used by verification steps. Normalize relative paths and match file entries in the representative's folder. Exclude URLs, absolute paths, placeholders, generated outputs and references clearly belonging to an external user project. Ambiguous paths and symlinks remain unknown. Absence can only be established from a fetched, untruncated inventory. Compare the per-skill resolved-reference fraction for V2 and V3 using a bootstrap difference in means, resampling skills rather than treating references as independent. If either group contains fewer than 20 eligible skills, report descriptive results only.
+
+Pilot 30 items, selected as 10 from each stratum, refine the codebook and recode the pilot under the frozen rules. After at least seven days, blindly recode 60 items: the pilot and 10 further items per stratum. Report percentage agreement and weighted Cohen's kappa with uncertainty. This measures intra-rater stability, not independent two-person agreement. If kappa is below 0.60, revise ambiguous rules and recode; if stability remains weak, simplify the categories and narrow the claims. Recheck every absent-file decision against its inventory and reference context. Unresolved labels and incomplete inventories will be reported with sensitivity bounds rather than imputed as negative findings.
+
+No LLM classifier is used for the observed audit. If automated semantic labeling is added later, it must be documented and validated against an untouched human-labeled sample, with per-class errors and abstentions reported. The snapshot, exact-hash matching, repository selection, shared templates and task differences limit interpretation. Edited copies may be missed, and the sample cannot establish whether guidance causes reuse or improves agent outputs.
+
+## Initial Data Quality Checks
+
+The analysis ran locally using Python 3.12.14 and SQLite 3.53.1, with a read-only database connection. A fresh rerun reproduced the saved audit, schema, study summary and sampling form exactly. SQLite integrity_check returned ok. Independently recomputing the Git blob hash of every representative text produced zero mismatches among 13,000 contents. There were no missing hashes, artifact-to-repository orphans or sibling-to-artifact orphans, and every content group had exactly one selected representative.
+
+Sixteen of the 16,786 nonprimary records also contained text and composition information, and 13 sibling entries joined to nonprimary occurrences. The main analysis therefore selects dedup_primary = 1 explicitly rather than treating nonmissing text as the representative indicator. The audit also found 378 filename variants among 29,786 occurrences and 1,709 parser-invalid headers among representatives. The main frame excludes them, while broader definitions remain a planned sensitivity check.
+
+Ten representatives lacked fetched composition and 1,755 had truncated inventories. Within the main study frame, 10,079 of 11,192 contents have fetched, untruncated composition. A count comparison initially differed for 2,915 representatives when directories were included, but produced zero mismatches when only file entries were compared with sibling_count in complete inventories. This resolves that apparent discrepancy without treating directories as files.
+
+Of the 47,829 sibling entries, 39,046 were files, 8,783 were directories and 22,278 contained text. Seventy-one file records had content_fetched = 1 but no content, and all skipped_reason values were missing. Text availability will be checked directly rather than inferred from flags. Repository metadata lacked language for 728 repositories and license information for 6,331; fork status and star counts were unknown for 37. Missing licenses will not be treated as redistribution permission.
+
+Present discovery and history timestamps parsed successfully, with no first-commit dates after their corresponding last-commit dates. Two histories preceded October 2025, and four collector runs had retroactively closed zero counts. Available histories covered 1,755 of 1,762 canonical representatives, 813 of 7,416 skills-directory representatives and 442 of 3,822 other representatives. This unequal coverage is why maintenance is outside the primary questions. Near duplicates, symlink prevalence, semantic label agreement and true supporting-reference resolution remain risks to investigate; they are not reported as completed findings.
+
+## Work Plan and Responsibilities
+
+Paul Revanth Madasu is responsible for reviewing the sources, understanding the queries, obtaining approval and peer feedback, completing the human coding, interpreting the results, maintaining the repository and presenting the study. The initial extraction and document preparation used AI assistance and are recorded as such in the activity log. If a second member joins, responsibilities and actual contributions will be documented explicitly; no second coder is currently claimed.
+
+Before the November 3 progress report, the priorities are to obtain sample approval, have another group attempt reproduction, pilot the codebook and make substantial progress on annotation. The progress report will distinguish completed labels from planned work and demonstrate a working query. During November, complete annotation, blind recoding, the planned comparisons and sensitivity checks. Manual coding is expected to require about 20-25 hours at five to six minutes per item. If the workload is too large, reduce the balanced sample to 40 per stratum and disclose the reduced precision. If the subset is not approved, revise the population with the instructor rather than presenting approval as granted.
+
+Before the December 3 presentation, prepare the motivation, method, strongest supported findings, implications and limitations. By December 9, finish the research paper, replication package, slides, activity log and individual contribution statement, incorporating actual review feedback. The final paper has different requirements from this checkpoint: it must be an anonymous IEEE conference manuscript with no more than four pages of main content plus one page of references, including ethical considerations before the conclusion. Names and contributions belong in the separate Canvas note. Conference submission and acceptance are not required for course completion.
+
+The repository uses a dated activity log and a branch-and-pull-request workflow for new revisions. The log distinguishes assistant-assisted preparation from student work, and completed events from next steps. Earlier direct commits remain visible; no retrospective branch reviews are invented. Potential obstacles include annotation time, ambiguous references, approval and peer availability. Complete-inventory analysis, explicit unknown categories and a reduced coding sample are the main contingencies. A full-release replication is optional and has not been completed.
+
+## Peer Feedback and Response
+
+Feedback from another group has not yet been received, so the graded response-to-peer-review requirement remains outstanding. Peer reviewers should follow reviews/reproduction-guide.md and report the commands they ran, what worked, what failed and their comments on the study design. Once feedback is received, the response will identify the reviewer group and date, address each actual comment, describe the corresponding revision or explain why it was not adopted. Automated checks and the author's own review will not be presented as another group's feedback.
+
+## Repository and Reproducibility
+
+The public study repository is https://github.com/paulrevanthpersonal-lab/cs599-gitskills-research. The checkpoint PDF, editable Word file, paragraph source, SQL, read-only runner, observed outputs, schema, codebook, coding frame and activity log are included. The raw dataset is obtained from its pinned public source rather than redistributed. The manifest records its exact identity. The full database SHA-256 is 683888c923a51952fb66f83f21351ed5bf1127ddddf380e517592ae27c367658.
+
+The README gives the exact download and execution commands. After obtaining the sample, run python3 run_checks.py data/agent_skills_sample.db --out rerun-results from the repository root. The analysis requires only the Python standard library; paper building has separate optional dependencies. A simple initial SQL query is SELECT COUNT(*) FROM artifacts;, which returned 29,786. The representative-invariant query in examples.sql returned zero invalid groups, and its location query returned 2,365 canonical, 14,882 skills-directory and 12,539 other occurrences. These are functioning checkpoint demonstrations, not answers to the research questions. The repository's checkpoint tag identifies the fixed package for reproduction.
+
+## Ethical Considerations
+
+Instructions are analyzed as text and never executed. No anonymized identifiers will be reversed or personally identifying enrichment added. File text will be redistributed only when permitted by its origin license. Missing checks do not establish malice, and static presence does not establish use or effectiveness.
+
+## References
+
+Agent Skills. (n.d.). *Specification.* Retrieved October 23, 2026, from https://agentskills.io/specification
+
+Destefanis, G. (2026). *Authoring agent skills: A software-engineering approach* [Preprint]. arXiv. https://arxiv.org/abs/2607.25032v1
+
+Destefanis, G., Graziotin, D., Vaccargiu, M., & Ortu, M. (2026a). *GitSkills: A dataset of agent skills on GitHub* (Version 1.0.0) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.21875637
+
+Destefanis, G., Graziotin, D., Vaccargiu, M., & Ortu, M. (2026b). *GitSkills: A dataset of agent skills on GitHub* [Preprint]. arXiv. https://arxiv.org/html/2608.10906v3
+
+Destefanis, G., Graziotin, D., Vaccargiu, M., & Ortu, M. (2026c). *GitSkills sample* [Data set documentation; revision fff3df93beeee51a5444450891751f143e38da3e]. GitHub. https://github.com/giuseppedestefanis/gitskills-sample/tree/fff3df93beeee51a5444450891751f143e38da3e
+
+Gao, H., Lulla, J. L., Lin, H. Y., Baltes, S., Treude, C., & Zahedi, M. (2026). *From registry to repository: How AI agent skills are written, adapted, and maintained* [Preprint]. arXiv. https://arxiv.org/abs/2607.00911v2
+
+Kalliamvakou, E., Gousios, G., Blincoe, K., Singer, L., German, D. M., & Damian, D. (2014). The promises and perils of mining GitHub. In *Proceedings of the 11th Working Conference on Mining Software Repositories* (pp. 92-101). Association for Computing Machinery. https://doi.org/10.1145/2597073.2597074
+
+MSR 2027 Organizers. (n.d.). *Mining challenge.* Retrieved October 23, 2026, from https://conf.researchr.org/track/msr-2027/msr-2027-mining-challenge
+
+Seddik, F. (2026). *Skill constellations: Tracing the supply chain of agent skills on GitHub* [Preprint]. arXiv. https://arxiv.org/abs/2610.11169v1
+
+Vaccargiu, M. (n.d.). *GitSkills* [Data set documentation]. Hugging Face. Retrieved October 23, 2026, from https://huggingface.co/datasets/mvaccargiu/gitskills/blob/main/README.md
