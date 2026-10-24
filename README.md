@@ -65,7 +65,8 @@ Expected output: `29786`.
 - `manifest.json`: snapshot identity, checksums and source URLs.
 - `results/`: observed query outputs, schema, study summary and blank coding frame.
 - `docs/codebook.txt`: proposed human annotation rules and validation plan.
-- `docs/checkpoint-1.pdf`: checkpoint report, including limitations and assignment gaps.
+- `docs/checkpoint-1.pdf`: paragraph-based checkpoint report with required headings, including limitations and assignment gaps.
+- `docs/checkpoint-1-paragraphs.txt`: editable paragraph text for revising wording.
 - `docs/peer-feedback.md`: honest record of current peer-review status.
 
 ## Next steps and course milestones
