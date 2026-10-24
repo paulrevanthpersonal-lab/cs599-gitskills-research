@@ -1,0 +1,9 @@
+{
+  "eligible_groups": 11192,
+  "strata": {
+    "cross-owner": 2234,
+    "same-owner-multiple": 693,
+    "single-occurrence": 8265
+  },
+  "complete_composition": 10079
+}

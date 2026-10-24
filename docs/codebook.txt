@@ -1,0 +1,43 @@
+PROPOSED HUMAN CODEBOOK v0.1 - not completed labels
+Unit: representative full SKILL.md content per file_sha in the eligible frame.
+Primary construct: explicit verification guidance for the work the skill does.
+Read the complete skill including quoted examples; distinguish instructions
+for the agent from background prose or examples of unrelated user tasks.
+V0: no instruction to inspect or check the task output.
+V1: asks to test/check/review output but gives neither a concrete check action
+    nor an observable pass/fail criterion.
+V2: gives a concrete check action (e.g. run a named test command, inspect a
+    rendered output, compare a value) OR an observable acceptance criterion,
+    but does not explicitly connect an action with a pass/fail expectation.
+V3: supplies both a concrete check action and its observable pass/fail criterion
+    and connects them to the skill's output. An expected zero exit status counts.
+Uncertain/not applicable: record as unresolved, never force into V0.
+Quote line numbers/evidence in private coding notes; minimize redistribution.
+
+RQ1 primary contrast: V2/V3 vs V0/V1 (actionable versus absent/generic).
+Secondary ordered V0-V3 summaries; unresolved cases shown separately.
+An example such as 'run pytest and require all tests to pass' is V3.
+'Review the result' is V1; a sentence discussing tests without directing a check
+is V0. These are invented codebook examples, not observed dataset quotations.
+
+RQ2 local supporting reference: an explicit relative path used by a verification
+step, excluding URLs, absolute paths, placeholders, generated outputs, and
+paths clearly addressed to the user's external project. Record excluded types.
+Normalize ./ and separators; resolve relative to representative skill folder;
+do not follow symlinks or allow traversal beyond folder. Match exact normalized
+entry_name and entry_type='file'; never join folders across content copies.
+Status: present; absent-in-complete-inventory; unknown-incomplete-inventory;
+ambiguous-external-or-generated. Presence is not proof that a script runs.
+
+Pilot 30 of 240, revise codebook, then recode those 30 under frozen v1.
+Code all 240 without displaying reuse strata, owner counts, and repository stars.
+Blind-recode 60 after at least 7 days, including 30 codebook pilot units and
+30 additional deterministic selections; record percentage agreement and
+weighted Cohen kappa with confidence intervals for V0-V3.
+This is intra-rater stability, not independent inter-rater reliability.
+A second reader is desirable but is neither available nor claimed.
+If weighted kappa <0.60, revise ambiguous rules and recode affected units;
+if agreement remains poor, collapse to actionable/not-actionable and limit claims.
+No LLM classifier is planned. If added later, reserve an untouched human-labelled
+holdout; report per-class precision/recall, confusion matrix, prompt, model,
+version and abstentions. Never use model agreement as a human gold standard.

@@ -1,0 +1,301 @@
+{
+  "table_counts": [
+    {
+      "table_name": "artifacts",
+      "n": 29786
+    },
+    {
+      "table_name": "repos",
+      "n": 11841
+    },
+    {
+      "table_name": "artifact_siblings",
+      "n": 47829
+    },
+    {
+      "table_name": "mining_runs",
+      "n": 7
+    }
+  ],
+  "content_groups": [
+    {
+      "groups": 13000,
+      "multiple_occurrences": 3378,
+      "multiple_owners": 2391,
+      "max_occurrences": 188,
+      "max_repositories": 132,
+      "max_owners": 122
+    }
+  ],
+  "representative_invariant": [
+    {
+      "groups_without_exactly_one_primary": 0
+    }
+  ],
+  "missing_hashes": [
+    {
+      "n": 0
+    }
+  ],
+  "orphan_artifacts": [
+    {
+      "n": 0
+    }
+  ],
+  "orphan_siblings": [
+    {
+      "n": 0
+    }
+  ],
+  "primary_quality": [
+    {
+      "n": 13000,
+      "null_content": 0,
+      "empty_content": 0,
+      "invalid_frontmatter": 1709,
+      "missing_composition": 10,
+      "truncated_composition": 1755,
+      "history_available": 3010,
+      "reversed_history": 0,
+      "pre_format_history": 2
+    }
+  ],
+  "nonprimary_enrichment": [
+    {
+      "n": 16786,
+      "with_content": 16,
+      "with_composition": 16
+    }
+  ],
+  "nonprimary_siblings": [
+    {
+      "n": 13
+    }
+  ],
+  "filenames": [
+    {
+      "filename": "SKILL.md",
+      "n": 29408
+    },
+    {
+      "filename": "skill.md",
+      "n": 349
+    },
+    {
+      "filename": "Skill.md",
+      "n": 24
+    },
+    {
+      "filename": "SKILL.MD",
+      "n": 5
+    }
+  ],
+  "locations": [
+    {
+      "location_class": "skills-dir",
+      "n": 14882
+    },
+    {
+      "location_class": "other",
+      "n": 12539
+    },
+    {
+      "location_class": "canonical",
+      "n": 2365
+    }
+  ],
+  "repo_quality": [
+    {
+      "n": 11841,
+      "owners": 10786,
+      "unfetched": 0,
+      "missing_language": 728,
+      "missing_license": 6331,
+      "forks": 0
+    }
+  ],
+  "sibling_quality": [
+    {
+      "n": 47829,
+      "text_present": 22278,
+      "nonempty_text": 22187,
+      "skip_reason_present": 0,
+      "files": 39046,
+      "directories": 8783
+    }
+  ],
+  "sibling_fetch_codes": [
+    {
+      "content_fetched": 0,
+      "entry_type": "dir",
+      "n": 6587,
+      "text_present": 0
+    },
+    {
+      "content_fetched": 1,
+      "entry_type": "file",
+      "n": 22349,
+      "text_present": 22278
+    },
+    {
+      "content_fetched": 2,
+      "entry_type": "dir",
+      "n": 2196,
+      "text_present": 0
+    },
+    {
+      "content_fetched": 2,
+      "entry_type": "file",
+      "n": 16697,
+      "text_present": 0
+    }
+  ],
+  "sibling_count_vs_all_entries": [
+    {
+      "mismatches": 2915
+    }
+  ],
+  "sibling_count_vs_files": [
+    {
+      "mismatches": 0
+    }
+  ],
+  "history_coverage": [
+    {
+      "location_class": "canonical",
+      "representatives": 1762,
+      "histories": 1755
+    },
+    {
+      "location_class": "other",
+      "representatives": 3822,
+      "histories": 442
+    },
+    {
+      "location_class": "skills-dir",
+      "representatives": 7416,
+      "histories": 813
+    }
+  ],
+  "date_ranges": [
+    {
+      "min_discovered": "2026-07-09T17:26:45.768703+00:00",
+      "max_discovered": "2026-07-20T22:08:11.065587+00:00",
+      "min_first_commit": "2025-04-14T15:09:35Z",
+      "max_last_commit": "2026-07-23T09:41:24Z"
+    }
+  ],
+  "date_parse_failures": [
+    {
+      "discovery_parse_failures": 0,
+      "first_parse_failures": 0,
+      "last_parse_failures": 0
+    }
+  ],
+  "mining_runs": [
+    {
+      "run_id": 1,
+      "artifact_type": "agent-skills",
+      "query": "filename:SKILL.md",
+      "started_at": "2026-07-09T17:26:45.768703+00:00",
+      "finished_at": "2026-07-09T18:04:34.751737+00:00",
+      "discovered": 11796,
+      "note": null
+    },
+    {
+      "run_id": 2,
+      "artifact_type": "agent-skills",
+      "query": "filename:SKILL.md",
+      "started_at": "2026-07-09T18:07:39.150068+00:00",
+      "finished_at": "2026-07-12T06:54:51.308396+00:00",
+      "discovered": 1328473,
+      "note": null
+    },
+    {
+      "run_id": 3,
+      "artifact_type": "agent-skills",
+      "query": "filename:SKILL.md",
+      "started_at": "2026-07-12T06:59:13.601456+00:00",
+      "finished_at": "2026-07-20T22:26:56.553671+00:00",
+      "discovered": 0,
+      "note": "closed retroactively: process crashed before finishing (repair-runs)"
+    },
+    {
+      "run_id": 4,
+      "artifact_type": "agent-skills",
+      "query": "filename:SKILL.md",
+      "started_at": "2026-07-13T12:52:52.309967+00:00",
+      "finished_at": "2026-07-20T22:26:56.553671+00:00",
+      "discovered": 0,
+      "note": "closed retroactively: process crashed before finishing (repair-runs)"
+    },
+    {
+      "run_id": 5,
+      "artifact_type": "agent-skills",
+      "query": "filename:SKILL.md",
+      "started_at": "2026-07-14T18:04:23.050325+00:00",
+      "finished_at": "2026-07-20T05:23:31.638481+00:00",
+      "discovered": 1657948,
+      "note": null
+    },
+    {
+      "run_id": 6,
+      "artifact_type": "agent-skills",
+      "query": "filename:SKILL.md",
+      "started_at": "2026-07-20T05:28:44.667482+00:00",
+      "finished_at": "2026-07-20T22:26:56.553671+00:00",
+      "discovered": 0,
+      "note": "closed retroactively: process crashed before finishing (repair-runs)"
+    },
+    {
+      "run_id": 7,
+      "artifact_type": "agent-skills",
+      "query": "filename:SKILL.md",
+      "started_at": "2026-07-20T07:38:28.581854+00:00",
+      "finished_at": "2026-07-20T22:26:56.553671+00:00",
+      "discovered": 0,
+      "note": "closed retroactively: process crashed before finishing (repair-runs)"
+    }
+  ],
+  "annotated_example": [
+    {
+      "repo_full_name": "obot-platform/obot",
+      "path": ".claude/skills/draft-release-blog/SKILL.md",
+      "file_sha": "00000f2a9d8359900f2075b536b435ca9473a5b9",
+      "name": "draft-release-blog",
+      "body_chars": 13056,
+      "sibling_count": 1,
+      "has_scripts": 1,
+      "has_references": 0,
+      "entry_name": "md_to_html.py",
+      "entry_type": "file",
+      "entry_size": 1158
+    }
+  ],
+  "missing_repo_flags": [
+    {
+      "unknown_fork": 37,
+      "missing_owner": 0,
+      "missing_stars": 37
+    }
+  ],
+  "strict_filter_audit": [
+    {
+      "exact_valid_representatives": 11197,
+      "unknown_representative_fork": 5
+    }
+  ],
+  "integrity_check": [
+    "ok"
+  ],
+  "independent_blob_hash_check": {
+    "tested": 13000,
+    "mismatches": 0
+  },
+  "runtime": {
+    "python": "3.12.14",
+    "sqlite": "3.53.1",
+    "database_bytes": 290955264,
+    "database_sha256": "683888c923a51952fb66f83f21351ed5bf1127ddddf380e517592ae27c367658"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "access_date_local": "2026-10-23",
+  "timezone": "America/Phoenix",
+  "sample_revision": "fff3df93beeee51a5444450891751f143e38da3e",
+  "sample_zip_sha256": "28a83ce750abde8fb904bc23191cb877a3645a1600eb326069fb2c18e7246fe8",
+  "sample_db_sha256": "683888c923a51952fb66f83f21351ed5bf1127ddddf380e517592ae27c367658",
+  "sample_db_bytes": 290955264,
+  "sample_zip_git_blob_sha1": "b2c5b19033285d2361a20df94d36e3eb922b6a1a",
+  "full_release_queried": false,
+  "hosted_study_repo": "https://github.com/paulrevanthpersonal-lab/cs599-gitskills-research",
+  "peer_feedback": null,
+  "source_urls": [
+    "https://conf.researchr.org/track/msr-2027/msr-2027-mining-challenge",
+    "https://arxiv.org/html/2608.10906v3",
+    "https://github.com/giuseppedestefanis/gitskills-sample/tree/fff3df93beeee51a5444450891751f143e38da3e",
+    "https://huggingface.co/datasets/mvaccargiu/gitskills/blob/main/README.md",
+    "https://zenodo.org/records/21875637",
+    "https://agentskills.io/specification",
+    "https://arxiv.org/abs/2607.25032",
+    "https://arxiv.org/abs/2607.00911v2",
+    "https://arxiv.org/abs/2610.11169v1",
+    "https://doi.org/10.1145/2597073.2597074"
+  ],
+  "evidence_source_hashes": {
+    "authoring-paper.html": "3bd5e63d4af1bb56a5147f412bbf13f75fbb7d4388af8fb08d218ea0c47732d6",
+    "registry-paper.html": "73fbccf5a5d765f13fe2bbbcccdde2366146a210b7db2d44fcc27028c68f4548",
+    "zenodo-record.json": "abc1c61ed57094bc54e59800273e2aba922beb3140d79f4d22b4561b978a2bb4",
+    "msr-call.html": "95a1e95dc06b8db349f4bc7a235c34aeb97b03f59bfebf7bb840f475b6083518",
+    "gitskills-paper.html": "a64740c757fb99c468d167ea5fcb51cb2401e67c5d06e084ff7b06762e694a0a",
+    "sample-commit.json": "908a228f4753258b8fa86b0c463b7551d5bddb8591759ef96d384136171a5c74",
+    "specification.html": "5b7b03f3341bcdaec7c314192dc2e0f05b98114bff0559f0d2c63fb6013948de",
+    "constellations-paper.txt": "cb53413e5d54c68833dc22530473d135540b2ced92ee42444ff69075f2004ac9",
+    "gitskills-paper.txt": "1e5206ec89de2751d414541f3cab68b0422736b75344b07ff7cbd5453d403c19",
+    "sample-README.md": "784341e6f12cab49ff3be5f735b2bfff740e5bd72fd811be4bb9450d344d25df",
+    "full-README.md": "84bef30d3cde5409e642d70124e8790ca1fa393706bd91b1a1c29db70f7ed164",
+    "sample-tree.json": "7cf208e8748984e3c20cee7ffd617b58f27940fdf5d2215284c86ede3dfb91dc",
+    "constellations-paper.html": "efe749266107dad56d9b2e628f9a01ff0862982158d1fdebc1eca7f05eac21e3"
+  },
+  "repository_visibility": "private"
+}
