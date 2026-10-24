@@ -11,3 +11,4 @@ rerun-results/
 group_features.csv
 .env
 .env.*
+build/

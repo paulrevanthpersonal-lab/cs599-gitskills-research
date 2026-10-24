@@ -41,3 +41,12 @@ if agreement remains poor, collapse to actionable/not-actionable and limit claim
 No LLM classifier is planned. If added later, reserve an untouched human-labelled
 holdout; report per-class precision/recall, confusion matrix, prompt, model,
 version and abstentions. Never use model agreement as a human gold standard.
+
+DETERMINISTIC PILOT AND RECODE SELECTION
+Within each reuse stratum, preserve the existing SHA-256 selection order.
+Use the first 10 selected units per stratum as the 30-unit pilot. Recode those
+under the frozen codebook after pilot revisions. For delayed blind recoding,
+use these pilot units and the next 10 units per stratum (60 total), at least
+7 days after their initial final-codebook labels. Keep the stratum key separate
+from sampling/annotation-blind.csv. These are planned procedures; no human
+labels or agreement measurements have been completed.
