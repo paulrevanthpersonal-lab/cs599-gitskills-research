@@ -2,6 +2,8 @@
 
 This repository contains the Checkpoint 1 dataset audit and proposed research design for **Verification Guidance and Reuse in GitHub Agent Skills**. It is separate from the Eclipse Zenoh contribution project.
 
+Public study repository: https://github.com/paulrevanthpersonal-lab/cs599-gitskills-research
+
 ## Research questions
 
 1. How does actionable verification guidance differ between skills with a single occurrence, multiple occurrences under one owner, and occurrences across multiple owners?
@@ -65,7 +67,8 @@ Expected output: `29786`.
 - `manifest.json`: snapshot identity, checksums and source URLs.
 - `results/`: observed query outputs, schema, study summary and blank coding frame.
 - `docs/codebook.txt`: proposed human annotation rules and validation plan.
-- `docs/checkpoint-1.pdf`: paragraph-based checkpoint report with required headings, including limitations and assignment gaps.
+- `docs/checkpoint-1.pdf`: current APA-formatted paragraph report with required headings, including limitations and assignment gaps.
+- `docs/checkpoint-1-apa.docx`: editable APA-formatted Word report with the public study link.
 - `docs/checkpoint-1-paragraphs.txt`: editable paragraph text for revising wording.
 - `docs/peer-feedback.md`: honest record of current peer-review status.
 

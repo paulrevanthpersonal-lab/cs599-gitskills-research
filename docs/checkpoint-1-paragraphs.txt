@@ -175,13 +175,13 @@ Nov. 18-Dec. 2. Complete interpretation, charts, limitations and reproducibility
 
 Dec. 3 presentation. Present questions, observed data-quality findings, final sample results, uncertainty and limitations; explain units and joins. Student must be able to rerun SQL and explain label decisions.
 
-Dec. 4-9 / Dec. 9 paper. Incorporate presentation feedback, verify claims against outputs, finalize paper and archive code/manifest/results. Confirm instructor access to the private repository and preserve the final analysis version.
+Dec. 4-9 / Dec. 9 paper. Incorporate presentation feedback, verify claims against outputs, finalize paper and archive code/manifest/results. Confirm the public repository link and preserve the final analysis version.
 
 Peer feedback and response to review
 
 No feedback from another group was supplied or recovered. Consequently, this report contains no invented reviewer, quotation, review date or revision attributed to a peer. A response-to-peer-review record cannot yet be completed. Once feedback is obtained, record the reviewer/group, date, exact or faithful feedback, resulting revision and page, and a reason for any suggestion not adopted. The literature-informed scope changes and audit-driven safeguards in this version are preparation decisions, not peer feedback.
 
-Study repository. https://github.com/paulrevanthpersonal-lab/cs599-gitskills-research. The private repository contains the read-only analysis runner, executed SQL, observed results, snapshot manifest, proposed codebook, blank coding frame and checkpoint report. The instructor needs repository access to inspect it. The raw dataset is downloaded separately from the authors' public source [3]. A local reproducibility ZIP also accompanies the report.
+Study repository. https://github.com/paulrevanthpersonal-lab/cs599-gitskills-research. The public repository contains the read-only analysis runner, executed SQL, observed results, snapshot manifest, proposed codebook, blank coding frame and checkpoint report. The repository can be inspected without signing in. The raw dataset is downloaded separately from the authors' public source [3]. A local reproducibility ZIP also accompanies the report.
 
 In-class check-in. The PDF cannot complete the oral component. Demonstrate the sample row count, representative invariant, and sibling-file count check in the repository, explain why content and occurrence units differ, and describe the planned label protocol. Do not imply that the check-in has occurred.
 
